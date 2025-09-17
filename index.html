@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qasm Abdulsalam - CV</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3498db;
+            --dark: #2c3e50;
+            --light: #ecf0f1;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--light);
+            color: #333;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            box-shadow: var(--shadow);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .container {
+            background: #2d2d2d;
+            color: #f0f0f0;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--primary);
+            margin-right: 2rem;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .dark-mode .header-text h1 {
+            color: var(--light);
+        }
+
+        .header-text p {
+            font-size: 1.2rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info a {
+            color: #555;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .dark-mode .contact-info a {
+            color: #ccc;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary);
+        }
+
+        .tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #eee;
+        }
+
+        .dark-mode .tabs {
+            border-bottom: 2px solid #444;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #777;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .tab-btn {
+            color: #aaa;
+        }
+
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h2 {
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .dark-mode h2 {
+            color: var(--light);
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .experience-item, .education-item {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px dashed #ddd;
+        }
+
+        .dark-mode .experience-item, 
+        .dark-mode .education-item {
+            border-bottom: 1px dashed #444;
+        }
+
+        .experience-item h3, .education-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .date {
+            color: #777;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .dark-mode .date {
+            color: #aaa;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.3rem;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .dark-mode .progress-bar {
+            background: #444;
+        }
+
+        .progress {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 5px;
+            width: 0;
+            transition: width 1.5s ease;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .project-card {
+            background: #f9f9f9;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .dark-mode .project-card {
+            background: #333;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-card h3 {
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .dark-mode .project-card h3 {
+            color: var(--light);
+        }
+
+        .project-card p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .dark-mode .project-card p {
+            color: #ccc;
+        }
+
+        .project-card .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .project-card .tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+
+        .toggle-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .toggle-btn {
+            background: var(--dark);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .toggle-btn {
+            background: var(--light);
+            color: var(--dark);
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+            color: #777;
+        }
+
+        .dark-mode footer {
+            border-top: 1px solid #444;
+            color: #aaa;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .profile-img {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+
+            .tabs {
+                justify-content: center;
+            }
+        }
+        @media print {
+  body { zoom: 90%; } /* Adjust scale if needed */
+  .container { box-shadow: none; }
+  .toggle-container { display: none; } /* Hide dark mode button */
+}
+    </style>
+</head>
+<body>
+    <div class="toggle-container">
+        <button class="toggle-btn" id="themeToggle">
+            <i class="fas fa-moon"></i> Dark Mode
+        </button>
+    </div>
+
+    <div class="container">
+        <header>
+            <img src="5327898598907703455_121.jpg" alt="Qasm Abdulsalam" class="profile-img">
+            <div class="header-text">
+                <h1>Qasm Abdulsalam Ahmed</h1>
+                <p>Computer Science Student | Full-Stack Developer</p>
+                <div class="contact-info">
+                    <a href="tel:+07503392677"><i class="fas fa-phone"></i> +0750 339 2677</a>
+                    <a href="mailto:qasmmziry@gmail.com"><i class="fas fa-envelope"></i> qasmmziry@gmail.com</a>
+                    <a href="#"><i class="fas fa-map-marker-alt"></i> Duhok, Kurdistan, Iraq</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" data-tab="about">About</button>
+            <button class="tab-btn" data-tab="experience">Experience</button>
+            <button class="tab-btn" data-tab="skills">Skills</button>
+            <button class="tab-btn" data-tab="projects">Projects</button>
+            <button class="tab-btn" data-tab="education">Education</button>
+        </div>
+
+        <div class="tab-content active" id="about">
+            <h2>About Me</h2>
+            <p>
+                I am a 4th-year Computer Science student at the University of Duhok with strong skills in web development (HTML, CSS, JavaScript, PHP) and system development (C++, C#, Python). I have built various applications including cashier systems, online booking platforms (stadiums, doctors), and other functional systems. Fluent in English and Arabic, I am passionate about creating efficient, user-friendly software solutions.
+            </p>
+        </div>
+
+        <div class="tab-content" id="experience">
+            <h2>Experience</h2>
+            <div class="experience-item">
+                <h3>Freelance Developer</h3>
+                <p class="date">2022 - Present</p>
+                <p>
+                    Developed multiple web applications including:
+                    <ul>
+                        <li>Online Football Stadium Booking System</li>
+                        <li>Doctor Appointment Booking Platform</li>
+                        <li>Retail Cashier Management System</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <div class="tab-content" id="skills">
+            <h2>Technical Skills</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>HTML/CSS</span>
+                        <span>95%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="95"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>JavaScript</span>
+                        <span>90%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>PHP</span>
+                        <span>85%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="85"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>C++</span>
+                        <span>80%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="80"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>C#</span>
+                        <span>75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="75"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Python</span>
+                        <span>70%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="70"></div>
+                    </div>
+                </div>
+            </div>
+
+            <h2 style="margin-top: 2rem;">Languages</h2>
+            <div class="skills-container">
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>English</span>
+                        <span>Fluent</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="90"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Arabic</span>
+                        <span>Native</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="100"></div>
+                    </div>
+                </div>
+                <div class="skill-item">
+                    <div class="skill-name">
+                        <span>Kurdish</span>
+                        <span>Native</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress" data-width="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="projects">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Football Stadium Booking System</h3>
+                    <p>An online platform for booking football stadiums with payment integration.</p>
+                    <div class="tags">
+                        <span class="tag">HTML/CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">PHP</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Doctor Appointment System</h3>
+                    <p>Web application for booking doctor appointments with admin dashboard.</p>
+                    <div class="tags">
+                        <span class="tag">C#</span>
+                        <span class="tag">SQL</span>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <h3>Retail Cashier System</h3>
+                    <p>Desktop application for managing sales, inventory, and receipts.</p>
+                    <div class="tags">
+                        <span class="tag">C++</span>
+                        <span class="tag">Qt</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="education">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>University of Duhok</h3>
+                <p class="date">2020 - 2024 (Expected)</p>
+                <p>Bachelor of Science in Computer Science (4th Year)</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2024 Qasm Abdulsalam Ahmed | Last Updated: June 2024</p>
+        </footer>
+    </div>
+
+    <script>
+        // Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i> Light Mode';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i> Dark Mode';
+            }
+        });
+
+        // Tab Switching
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                btn.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Animate Progress Bars
+        const progressBars = document.querySelectorAll('.progress');
+        window.addEventListener('load', () => {
+            progressBars.forEach(bar => {
+                const width = bar.getAttribute('data-width');
+                bar.style.width = width + '%';
+            });
+        });
+    </script>
+</body>
+</html>
